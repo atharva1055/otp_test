@@ -6,11 +6,8 @@ const path = require('path');
 const cors = require('cors');
 const app = express(); // Move this to the top before using app.use()
 
-app.use(cors({
-    origin: 'https://otp-test-nu.vercel.app', // Allow only your frontend
-    methods: 'GET,POST,PUT,DELETE',
-    allowedHeaders: 'Content-Type'
-}));
+app.use(cors()); // Allow all origins
+
 
 
 // Load environment variables from .env file
