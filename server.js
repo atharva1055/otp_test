@@ -4,7 +4,11 @@ const dotenv = require('dotenv');
 const sgMail = require('@sendgrid/mail');
 const path = require('path');
 const cors = require('cors');
-
+app.use(cors({
+    origin: 'https://otp-test-nu.vercel.app', // Allow only your frontend
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type'
+}));
 
 
 // Load environment variables from .env file
