@@ -35,10 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // API endpoint to send OTP
 app.post('/send-otp', (req, res) => {
-    res.header("Access-Control-Allow-Origin", "https://otp-test-nu.vercel.app"); // Explicitly allow frontend
-    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.header("Access-Control-Allow-Credentials", "true");
+   
     const { email, name } = req.body;
     const otp = generateOTP();
 
