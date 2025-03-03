@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 
 // Enable CORS with specific origin
 app.use(cors({
-    origin: 'https://otpui.vercel.app', // Replace with your frontend URL
+    origin: 'otp-test-nu.vercel.app', // Replace with your frontend URL
     methods: 'GET,POST',
     credentials: true
 }));
