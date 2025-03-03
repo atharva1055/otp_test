@@ -4,14 +4,11 @@ const dotenv = require('dotenv');
 const sgMail = require('@sendgrid/mail');
 const path = require('path');
 const cors = require('cors');
-const app = express(); // Move this to the top before using app.use()
-
-app.use(cors()); // Allow all origins
-
-
 
 // Load environment variables from .env file
 dotenv.config();
+
+console.log('SendGrid API Key loaded:', process.env.SENDGRID_API_KEY ? 'Yes' : 'No');
 
 // Set up SendGrid
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -22,11 +19,26 @@ const port = process.env.PORT || 3000;
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
 
+// Enable CORS with specific origin
+app.use(cors({
+    origin: ['https://otp-test-nu.vercel.app/', 'https://otptest-production.up.railway.app/'], // Allow both frontend & backend domains
+    methods: 'GET,POST,OPTIONS',
+    credentials: true
+}));
+
+// Handle preflight requests
+app.options('*', cors());
+   
+
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
 
 // API endpoint to send OTP
 app.post('/send-otp', (req, res) => {
+    res.header("Access-Control-Allow-Origin", "'https://otp-test-nu.vercel.app"); // Explicitly allow frontend
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.header("Access-Control-Allow-Credentials", "true");
     const { email, name } = req.body;
     const otp = generateOTP();
 
