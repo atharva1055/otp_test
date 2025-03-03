@@ -23,13 +23,6 @@ const port = process.env.PORT || 3000;
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
 
-// Enable CORS with specific origin
-app.use(cors({
-    origin: 'otp-test-nu.vercel.app', // Replace with your frontend URL
-    methods: 'GET,POST',
-    credentials: true
-}));
-
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
 
