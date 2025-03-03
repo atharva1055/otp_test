@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 
 // Enable CORS with specific origin
 app.use(cors({
-    origin: ['https://otp-test-nu.vercel.app/', 'https://otptest-production.up.railway.app/'], // Allow both frontend & backend domains
+    origin: ['https://otp-test-nu.vercel.app', 'https://otptest-production.up.railway.app'], // Allow both frontend & backend domains
     methods: 'GET,POST,OPTIONS',
     credentials: true
 }));
